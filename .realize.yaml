@@ -1,0 +1,36 @@
+settings:
+  legacy:
+    force: false
+    interval: 0s
+
+schema:
+  - name: backend
+    path: .
+    args:
+      - /go/app/main
+      - --config=.env
+      - serve
+      - --no-config
+    commands:
+      install:
+        status: true
+        method: govvv build -o main ./cmd
+      run:
+        status: true
+      build:
+        status: true
+      fmt:
+        status: true
+      generate:
+        status: true
+    vet:
+      status: true
+    watcher:
+      extensions:
+        - go
+      paths:
+        - /
+      ignored_paths:
+        - .git
+        - .realize
+        - vendor
